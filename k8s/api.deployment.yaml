@@ -16,7 +16,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: us-central1-docker.pkg.dev/brilliant-dock-408207/priyo/go-react-postgres/api:1.0.1
+        - image: us-central1-docker.pkg.dev/brilliant-dock-408207/priyo/go-react-postgres/api:1.0.2
           imagePullPolicy: IfNotPresent
           name: api
           resources:
