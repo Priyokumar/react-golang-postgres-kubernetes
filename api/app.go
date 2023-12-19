@@ -6,11 +6,8 @@ import (
 	"fmt"
 )
 
-func init() {
-	db.ConnectDb()
-}
-
 func main() {
+	db.ConnectDb()
 	const port int = 8000
 	fmt.Println("Hello world.")
 	r := routes.GetRouter()

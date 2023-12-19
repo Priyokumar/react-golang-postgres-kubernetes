@@ -25,5 +25,11 @@ func ConnectDb() {
 		log.Fatal(err)
 	}
 	log.Println("connected")
-	log.Println(db)
+	log.Println("pinging...")
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(" DB ping error: ", err.Error())
+	}
+	log.Println("pong...")
+
 }
