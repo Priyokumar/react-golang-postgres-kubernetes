@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api
+  name: api
+  namespace: priyo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - image: us-central1-docker.pkg.dev/brilliant-dock-408207/priyo/go-react-postgres/api:latest
+          imagePullPolicy: IfNotPresent
+          name: api
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+            limits:
+              memory: "3Gi"
+              cpu: "2"
+          env:
+            - name: POSTGRES_USER
+              value: test
+            - name: POSTGRES_PASSWORD
+              value: test
+            - name: POSTGRES_DB
+              value: test
+            - name: POSTGRES_HOST
+              value: postgres.priyo.svc.cluster.local
+          ports:
+            - containerPort: 8000
