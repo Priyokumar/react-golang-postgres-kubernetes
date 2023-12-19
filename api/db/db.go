@@ -10,14 +10,27 @@ import (
 
 func ConnectDb() {
 	log.Println("connecting to db")
-	user := os.Getenv("POSTGRES_USER")
-	psswd := os.Getenv("POSTGRES_PASSWORD")
+	pgUser := os.Getenv("POSTGRES_USER")
+	pgPassword := os.Getenv("POSTGRES_PASSWORD")
 	database := os.Getenv("POSTGRES_DB")
 	host := os.Getenv("POSTGRES_HOST")
 
-	log.Println(user, psswd, database, host)
+	if pgUser == "" {
+		pgUser = "postgres"
+	}
+	if pgPassword == "" {
+		pgPassword = "root"
+	}
+	if database == "" {
+		database = "test"
+	}
+	if host == "" {
+		host = "localhost"
+	}
 
-	connStr := "postgresql://" + user + ":" + psswd + "@" + host + ":5432/" + database + "?sslmode=disable"
+	log.Println(pgUser, pgPassword, database, host)
+
+	connStr := "postgresql://" + pgUser + ":" + pgPassword + "@" + host + ":5432/" + database + "?sslmode=disable"
 	//connStr := "postgresql://postgres:root@localhost:5432/test?sslmode=disable"
 	// Connect to database
 	db, err := sql.Open("postgres", connStr)

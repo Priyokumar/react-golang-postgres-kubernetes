@@ -16,8 +16,15 @@ spec:
         app: frontend
     spec:
       containers:
-        - image: us-central1-docker.pkg.dev/brilliant-dock-408207/priyo/go-react-postgres/frontend:latest
+        - image: us-central1-docker.pkg.dev/brilliant-dock-408207/priyo/go-react-postgres/frontend:1.0.0
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+            limits:
+              memory: "3Gi"
+              cpu: "2"
           name: frontend
           ports:
             - containerPort: 80
