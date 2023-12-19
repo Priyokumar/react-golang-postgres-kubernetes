@@ -28,12 +28,24 @@ spec:
               cpu: "2"
           env:
             - name: POSTGRES_USER
-              value: test
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
-              value: test
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: POSTGRES_PASSWORD
             - name: POSTGRES_DB
-              value: test
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: POSTGRES_DB
             - name: POSTGRES_HOST
-              value: postgres.priyo.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: POSTGRES_HOST
           ports:
             - containerPort: 8000
