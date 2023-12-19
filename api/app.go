@@ -11,7 +11,7 @@ func init() {
 }
 
 func main() {
-	const port int = 8001
+	const port int = 8000
 	fmt.Println("Hello world.")
 	r := routes.GetRouter()
 	r.Run(fmt.Sprint(":", port))
